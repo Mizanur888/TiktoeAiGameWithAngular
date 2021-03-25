@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "tik-toe-ai"
+    }
+  },
+  "defaultProject": "tik-toe-ai",
+  "cli": {
+    "analytics": false
+  }
 }
