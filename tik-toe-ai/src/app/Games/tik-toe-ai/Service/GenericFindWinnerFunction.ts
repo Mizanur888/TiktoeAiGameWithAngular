@@ -10,19 +10,51 @@ export async function FindWinner(board: string[][], dimanson: number): Promise<[
     checkWinner = await checkforDiagonalWinner(board, dimanson);
 
     if (checkWinner[0] === false) {
-        //check for diagonal winner top [0][0] to bottom [2][2]
         checkWinner = await checkforDiagonalWinnertopBottom(board, dimanson);
     }
 
     if (checkWinner[0] === false) {
-        //check for diagonal winner top [0][0] to bottom [2][2]
         checkWinner = await checkforhorizonal(board, dimanson);
     }
-
+    if (checkWinner[0] === false) {
+        checkWinner = await checkforHorizontalWinner(board, dimanson);
+    }
     return [checkWinner[0], checkWinner[1]];
 }
 
-//check winner on horizonal --------------
+async function checkforHorizontalWinner(board: string[][], dimanson: number): Promise<[boolean, string]> {
+    let winner = false;
+    let winnerSymbol = "";
+    let i = 0, j = 0, count = 1;
+    let current = board[0][0];
+
+    if (winner === false) {
+        do {
+            current = board[0][j];
+            if (current != "") {
+                for (i = 1; i < dimanson; i++) {
+                    if (board[i][j] === current) {
+                        count++;
+                    }
+                    else {
+                        count = 1;
+                        i = dimanson - 1;
+                        current = "";
+                    }
+                }
+            }
+            if (count === dimanson) {
+                winner = true;
+                winnerSymbol = current;
+                j = dimanson - 1;
+                i = dimanson - 1;
+            }
+            j++;
+        } while (j <= (dimanson - 1));
+    }
+
+    return [winner, winnerSymbol];
+}
 async function checkforhorizonal(board: string[][], dimanson: number): Promise<[boolean, string]> {
     let winner = false;
     let winnerSymbol = "";
