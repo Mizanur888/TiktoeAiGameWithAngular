@@ -1,0 +1,18 @@
+<h1>Tik Toe Ai form GAME</h1>
+
+<div class="gamebord">
+  <button class="btn-small" (click)="playGame()">
+    Play Game
+  </button>
+  <div class="board" *ngFor="let item of this.game.board; let i = index">
+    <div
+      class="innerboard"
+      *ngFor="let items of item; let j = index"
+      (click)="makeMove(j, i)"
+    >
+      <span
+        ><h1>{{ this.game.board[j][i] }}</h1>
+      </span>
+    </div>
+  </div>
+</div>
