@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { gamseStatus } from '../Model/gameStatus';
-import { FindWinner } from './GenericFindWinnerFunction';
+import { FindBestMoveForAi, FindWinner } from './GenericFindWinnerFunction';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,13 @@ export class TiktoegameserviceService {
   constructor() {
     this.gamseStatus = gamseStatus.Stop;
     this.board = [];
+  }
+
+  async makeMoveforAi(board: string[][], dimension: number): Promise<void> {
+    let currentmoveAi = await FindBestMoveForAi(board, dimension);
+    console.log("makeMoveforAi")
+    console.log("FindBestMoveForAi   " + currentmoveAi[0] + "  " + currentmoveAi[1])
+    await this.addPlayerIntheBoard(currentmoveAi[0], currentmoveAi[1]);
   }
 
   setNextMove(): number {
