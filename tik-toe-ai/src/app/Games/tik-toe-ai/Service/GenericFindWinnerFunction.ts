@@ -2,7 +2,7 @@ import { __await } from 'tslib';
 
 export async function FindWinner(board: string[][], dimanson: number): Promise<[boolean, string]> {
 
-   
+
     let checkWinner: [boolean, string];
     let winPlayer = null;
     let winner = false;
@@ -72,7 +72,7 @@ export async function FindBestMoveForAi(board: string[][], dimanson: number): Pr
 
                 // compute evaluation function for this
                 // move.
-                let moveVal = await MinMaxAlgoAi(board, 0, false);
+                let moveVal = await MinMaxAlgoAi(board, 0, false, dimanson);
 
                 board[i][j] = "";
 
@@ -92,9 +92,9 @@ export async function FindBestMoveForAi(board: string[][], dimanson: number): Pr
     return [row, col];
 }
 
-async function MinMaxAlgoAi(board: string[][], depth: number, isMax: boolean): Promise<number> {
+async function MinMaxAlgoAi(board: string[][], depth: number, isMax: boolean, dimanson: number): Promise<number> {
 
-    var dimanson = 3;
+
     let score = await FindWinnerAI(board, dimanson);
 
     if (score === 10) {
@@ -122,7 +122,7 @@ async function MinMaxAlgoAi(board: string[][], depth: number, isMax: boolean): P
                     // Call minimax recursively and choose
                     // the maximum value
 
-                    best = Math.max(best, await MinMaxAlgoAi(board, depth + 1, !isMax));
+                    best = Math.max(best, await MinMaxAlgoAi(board, depth + 1, !isMax, dimanson));
 
                     board[i][j] = "";
                 }
@@ -146,7 +146,7 @@ async function MinMaxAlgoAi(board: string[][], depth: number, isMax: boolean): P
                     // Call minimax recursively and choose
                     // the maximum value
 
-                    best = Math.min(best, await MinMaxAlgoAi(board, depth + 1, !isMax));
+                    best = Math.min(best, await MinMaxAlgoAi(board, depth + 1, !isMax, dimanson));
 
                     board[i][j] = "";
                 }

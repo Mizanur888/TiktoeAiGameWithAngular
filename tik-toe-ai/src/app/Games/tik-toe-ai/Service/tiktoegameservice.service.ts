@@ -60,7 +60,7 @@ export class TiktoegameserviceService {
     await this.createBoard(dimension);
     this.currentTurn = await this.getRandcurrentPlayerTurn();
     this.dimension = dimension;
-    alert(this.currentTurn);
+    alert(this.currentTurn + " | " + this.dimension);
     if (this.currentTurn === 2) {
       //Ai Turn
       await this.makeMoveforAi(this.board, this.dimension);

@@ -2,8 +2,8 @@
 <div class="winner" *ngIf="gameResule != ''">
   <h1> {{ gameResule }}</h1>
 </div>
+<button class="btn-small" (click)="playGame()">Play Game</button>
 <div class="gamebord">
-  <button class="btn-small" (click)="playGame()">Play Game</button>
   <div class="board" *ngFor="let item of this.game.board; let i = index">
     <div
       class="innerboard"
