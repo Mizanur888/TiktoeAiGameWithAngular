@@ -20,11 +20,7 @@ export class TikToeAiComponent implements OnInit {
 
   async playGame(): Promise<void> {
     this.game.startThegame(3);
-    if (this.game.currentTurn === 2) {
-      //Ai Turn
-      await this.game.makeMoveforAi(this.game.board, this.dimension);
-      this.game.currentTurn = this.game.setNextMove();
-    }
+
   }
 
   async makeMove(idx: number, colm: number): Promise<void> {
@@ -48,7 +44,7 @@ export class TikToeAiComponent implements OnInit {
       }
     }
     this.checkWinner = await this.game.isThereWinner();
-
+    isgameover = await this.game.isGameOver();
     if (this.checkWinner[0] === true) {
 
       this.gameResule = "The Winner is: " + this.checkWinner[1]

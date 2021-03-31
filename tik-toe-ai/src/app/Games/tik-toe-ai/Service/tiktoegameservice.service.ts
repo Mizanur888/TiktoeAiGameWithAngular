@@ -61,6 +61,11 @@ export class TiktoegameserviceService {
     this.currentTurn = await this.getRandcurrentPlayerTurn();
     this.dimension = dimension;
     alert(this.currentTurn);
+    if (this.currentTurn === 2) {
+      //Ai Turn
+      await this.makeMoveforAi(this.board, this.dimension);
+      this.currentTurn = this.setNextMove();
+    }
   }
 
   async createBoard(dimension: number): Promise<void> {

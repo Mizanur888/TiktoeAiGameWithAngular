@@ -2,7 +2,7 @@ import { __await } from 'tslib';
 
 export async function FindWinner(board: string[][], dimanson: number): Promise<[boolean, string]> {
 
-    console.log("FindWinner " + dimanson)
+   
     let checkWinner: [boolean, string];
     let winPlayer = null;
     let winner = false;
